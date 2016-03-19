@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="44x-LK-YlO">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--Drawing Settings View Controller-->
+        <scene sceneID="ZgO-Ds-WvU">
+            <objects>
+                <viewController id="44x-LK-YlO" customClass="DrawingSettingsViewController" customModule="Flipbook" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0uP-qH-KOI"/>
+                        <viewControllerLayoutGuide type="bottom" id="Loa-S1-pa4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RH4-5w-NPH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="vmr-dE-NPV">
+                                <rect key="frame" x="252" y="20" width="97" height="200"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="3k6-1u-Guw">
+                                        <rect key="frame" x="0.0" y="0.0" width="46" height="200"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U41-Zd-7Hf" customClass="ColorButton" customModule="Flipbook" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="46" height="46"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="colorButtonDidTouchUpInside:" destination="44x-LK-YlO" eventType="touchUpInside" id="OH0-5D-pdA"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FmC-OR-HGs" customClass="ColorButton" customModule="Flipbook" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="51" width="46" height="47"/>
+                                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="colorButtonDidTouchUpInside:" destination="44x-LK-YlO" eventType="touchUpInside" id="UTX-go-guW"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJQ-Uz-wDq" customClass="ColorButton" customModule="Flipbook" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="103" width="46" height="46"/>
+                                                <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="colorButtonDidTouchUpInside:" destination="44x-LK-YlO" eventType="touchUpInside" id="5NN-oh-c9a"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8N-bS-Lt4" customClass="ColorButton" customModule="Flipbook" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="154" width="46" height="46"/>
+                                                <color key="backgroundColor" red="0.50196081399917603" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="colorButtonDidTouchUpInside:" destination="44x-LK-YlO" eventType="touchUpInside" id="JOh-Ng-ZgO"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="VDJ-a3-H16">
+                                        <rect key="frame" x="51" y="0.0" width="46" height="200"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guf-DA-20u" customClass="ColorButton" customModule="Flipbook" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="46" height="46"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="colorButtonDidTouchUpInside:" destination="44x-LK-YlO" eventType="touchUpInside" id="YHE-Of-bcU"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kt4-Y8-0Zx" customClass="ColorButton" customModule="Flipbook" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="51" width="46" height="47"/>
+                                                <color key="backgroundColor" red="0.0" green="1" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="colorButtonDidTouchUpInside:" destination="44x-LK-YlO" eventType="touchUpInside" id="m9e-jN-b5N"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lYg-5M-n6w" customClass="ColorButton" customModule="Flipbook" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="103" width="46" height="46"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="colorButtonDidTouchUpInside:" destination="44x-LK-YlO" eventType="touchUpInside" id="dsl-2O-XBh"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YN1-gt-SbV" customClass="ColorButton" customModule="Flipbook" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="154" width="46" height="46"/>
+                                                <color key="backgroundColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="colorButtonDidTouchUpInside:" destination="44x-LK-YlO" eventType="touchUpInside" id="2bR-57-GVl"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="IPS-ap-UUD"/>
+                                    <constraint firstItem="3k6-1u-Guw" firstAttribute="leading" secondItem="vmr-dE-NPV" secondAttribute="leading" id="riC-FX-95X"/>
+                                    <constraint firstAttribute="width" constant="97" id="yfn-gR-fnx"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hed-bh-39j">
+                                <rect key="frame" x="256" y="240" width="89" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jny-b2-y8E">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="-"/>
+                                        <connections>
+                                            <action selector="lineWidthMinusButtonDidTouchUpInside:" destination="44x-LK-YlO" eventType="touchUpInside" id="LQL-oh-8bb"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ShD-d0-281">
+                                        <rect key="frame" x="30" y="0.0" width="29" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6My-oZ-tiE">
+                                        <rect key="frame" x="59" y="0.0" width="30" height="30"/>
+                                        <state key="normal" title="+"/>
+                                        <connections>
+                                            <action selector="lineWidthPlusButtonDidTouchUpInside:" destination="44x-LK-YlO" eventType="touchUpInside" id="Obc-eR-zen"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ole-S8-obI">
+                                <rect key="frame" x="240" y="290" width="121" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Freehand?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfQ-0g-81n">
+                                        <rect key="frame" x="0.0" y="0.0" width="81" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dsL-t8-Pun">
+                                        <rect key="frame" x="91" y="0.0" width="30" height="30"/>
+                                        <connections>
+                                            <action selector="freehandButtonDidTouchUpInside:" destination="44x-LK-YlO" eventType="touchUpInside" id="onj-NN-D76"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ole-S8-obI" firstAttribute="centerX" secondItem="RH4-5w-NPH" secondAttribute="centerX" id="DvI-RQ-MmG"/>
+                            <constraint firstItem="vmr-dE-NPV" firstAttribute="centerX" secondItem="RH4-5w-NPH" secondAttribute="centerX" id="EzS-xc-M0p"/>
+                            <constraint firstItem="ole-S8-obI" firstAttribute="top" secondItem="Hed-bh-39j" secondAttribute="bottom" constant="20" id="O99-4n-JYg"/>
+                            <constraint firstItem="Hed-bh-39j" firstAttribute="top" secondItem="vmr-dE-NPV" secondAttribute="bottom" constant="20" id="Po2-Yr-FU6"/>
+                            <constraint firstItem="Hed-bh-39j" firstAttribute="centerX" secondItem="RH4-5w-NPH" secondAttribute="centerX" id="dSl-TP-Xiz"/>
+                            <constraint firstItem="vmr-dE-NPV" firstAttribute="top" secondItem="0uP-qH-KOI" secondAttribute="bottom" constant="20" id="fbW-J7-RCA"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="freehandButton" destination="dsL-t8-Pun" id="uqz-Mm-r7x"/>
+                        <outlet property="lineWidthLabel" destination="ShD-d0-281" id="TPr-dK-u5u"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uwK-Xi-WmH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="558" y="412"/>
+        </scene>
+    </scenes>
+</document>
