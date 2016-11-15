@@ -32,7 +32,7 @@ class DrawViewController: UIViewController {
   
   @IBOutlet weak var backgroundTapGestureRecogniser: UITapGestureRecognizer!
   
-  var timer: NSTimer?
+  var timer: Timer?
   
   var currentFrame = 0
   var shouldRepeat = false
@@ -43,7 +43,7 @@ class DrawViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     currentFrameView.lineDrawn = {
-      self.undoButton.enabled = self.currentFrameView.count > 0
+      self.undoButton.isEnabled = self.currentFrameView.count > 0
     }
     
     playbackSettingsContainerView.present = { [weak self] animated in
@@ -52,7 +52,7 @@ class DrawViewController: UIViewController {
         self?.playbackSettingsLeadingConstraint.constant = 0
       }
       
-      self?.backgroundTapGestureRecogniser.enabled = true
+      self?.backgroundTapGestureRecogniser.isEnabled = true
       
     }
     
@@ -64,7 +64,7 @@ class DrawViewController: UIViewController {
         }
       }
       
-      self?.backgroundTapGestureRecogniser.enabled = false
+      self?.backgroundTapGestureRecogniser.isEnabled = false
       
     }
     
@@ -74,7 +74,7 @@ class DrawViewController: UIViewController {
         self?.drawingSettingsTrailingConstraint.constant = 0
       }
       
-      self?.backgroundTapGestureRecogniser.enabled = true
+      self?.backgroundTapGestureRecogniser.isEnabled = true
       
     }
     
@@ -86,39 +86,39 @@ class DrawViewController: UIViewController {
         }
       }
       
-      self?.backgroundTapGestureRecogniser.enabled = false
+      self?.backgroundTapGestureRecogniser.isEnabled = false
       
     }
     
   }
   
-  func updateConstraint(animated: Bool = true, update: (Void -> Void)) {
+  func updateConstraint(_ animated: Bool = true, update: ((Void) -> Void)) {
     
     update()
     
     if animated {
-      UIView.animateWithDuration(0.3) { [ weak self] in
+      UIView.animate(withDuration: 0.3, animations: { [ weak self] in
         self?.view.layoutIfNeeded()
-      }
+      }) 
     } else {
       view.layoutIfNeeded()
     }
     
   }
   
-  @IBAction func freehandButtonDidTouchUpInside(sender: UIButton) {
+  @IBAction func freehandButtonDidTouchUpInside(_ sender: UIButton) {
     currentFrameView.freehand.flip()
-    freehandButton.setTitle(currentFrameView.freehand ? "Freehand" : "Straight", forState: .Normal)
+    freehandButton.setTitle(currentFrameView.freehand ? "Freehand" : "Straight", for: UIControlState())
   }
   
-  @IBAction func nextFrameButtonDidTouchUpInside(sender: UIButton) {
+  @IBAction func nextFrameButtonDidTouchUpInside(_ sender: UIButton) {
     let image = currentFrameView.currentCanvas()
     currentFrameView.clearCanvas()
     previousFrameView.image = image
     frames.append(image)
   }
   
-  @IBAction func playButtonDidTouchUpInside(sender: UIButton) {
+  @IBAction func playButtonDidTouchUpInside(_ sender: UIButton) {
     if isPlaying {
       stopPlayback()
     } else if !frames.isEmpty {
@@ -126,42 +126,42 @@ class DrawViewController: UIViewController {
     }
   }
   
-  @IBAction func resetButtonDidTouchUpInside(sender: UIButton) {
+  @IBAction func resetButtonDidTouchUpInside(_ sender: UIButton) {
     stopPlayback()
     currentFrameView.clearCanvas()
     frames = [ ]
     previousFrameView.image = nil
   }
   
-  @IBAction func undoButtonDidTouchUpInside(sender: UIButton) {
+  @IBAction func undoButtonDidTouchUpInside(_ sender: UIButton) {
     currentFrameView.undoLastStroke()
     if currentFrameView.count == 0 {
-      undoButton.enabled = false
+      undoButton.isEnabled = false
     }
   }
   
-  @IBAction func repeatSwitchDidChangeValue(sender: UISwitch) {
+  @IBAction func repeatSwitchDidChangeValue(_ sender: UISwitch) {
     shouldRepeat.flip()
   }
   
-  @IBAction func backgroundWasTapped(recogniser: UITapGestureRecognizer) {
+  @IBAction func backgroundWasTapped(_ recogniser: UITapGestureRecognizer) {
     playbackSettingsContainerView.dismiss(true)
     drawingSettingsContainerView.dismiss(true)
   }
   
   func startPlayback() {
     currentFrame = 0
-    currentFrameView.hidden = true
-    timer = NSTimer.scheduledTimerWithTimeInterval(1/24, target: self, selector: "updateFrame", userInfo: nil, repeats: true)
-    playButton.setTitle("Stop", forState: .Normal)
+    currentFrameView.isHidden = true
+    timer = Timer.scheduledTimer(timeInterval: 1/24, target: self, selector: #selector(DrawViewController.updateFrame), userInfo: nil, repeats: true)
+    playButton.setTitle("Stop", for: UIControlState())
     isPlaying = true
   }
   
   func stopPlayback() {
-    currentFrameView.hidden = false
+    currentFrameView.isHidden = false
     timer?.invalidate()
     timer = nil
-    playButton.setTitle("Play", forState: .Normal)
+    playButton.setTitle("Play", for: UIControlState())
     isPlaying = false
     currentFrame = 0
     previousFrameView.image = frames.last
@@ -169,7 +169,7 @@ class DrawViewController: UIViewController {
   
   func updateFrame() {
     previousFrameView.image = frames[currentFrame]
-    currentFrame++
+    currentFrame += 1
     if (currentFrame == frames.count) {
       currentFrame = 0
       if !shouldRepeat {
@@ -178,8 +178,8 @@ class DrawViewController: UIViewController {
     }
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    super.prepareForSegue(segue, sender: sender)
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    super.prepare(for: segue, sender: sender)
     
     guard let identifier = segue.identifier else {
       return
@@ -188,7 +188,7 @@ class DrawViewController: UIViewController {
     switch identifier {
       
     case SegueIdentifiers.DrawingEmbedSegueIdentifier.rawValue:
-      let destination: DrawingSettingsViewController = segue.destinationViewController as! DrawingSettingsViewController
+      let destination: DrawingSettingsViewController = segue.destination as! DrawingSettingsViewController
       destination.delegate = self
       break
       
@@ -205,7 +205,7 @@ class DrawViewController: UIViewController {
 
 extension DrawViewController {
   
-  @IBAction func playbackButtonDidTouchUpInside(sender: UIButton) {
+  @IBAction func playbackButtonDidTouchUpInside(_ sender: UIButton) {
     playbackSettingsContainerView.present(true)
   }
   
@@ -213,7 +213,7 @@ extension DrawViewController {
 
 extension DrawViewController {
   
-  @IBAction func drawButtonDidTouchUpInside(sender: UIButton) {
+  @IBAction func drawButtonDidTouchUpInside(_ sender: UIButton) {
     drawingSettingsContainerView.present(true)
   }
   
@@ -221,7 +221,7 @@ extension DrawViewController {
 
 extension DrawViewController {
   
-  @IBAction func timelineButtonDidTouchUpInside(sender: UIButton) {
+  @IBAction func timelineButtonDidTouchUpInside(_ sender: UIButton) {
     timelineSettingsView.present(true)
   }
   
@@ -229,15 +229,15 @@ extension DrawViewController {
 
 extension DrawViewController: DrawingSettingsDelegate {
   
-  func colorDidChange(color: UIColor?) {
+  func colorDidChange(_ color: UIColor?) {
     currentFrameView.strokeColor = color
   }
   
-  func lineWidthDidChange(width: CGFloat) {
+  func lineWidthDidChange(_ width: CGFloat) {
     currentFrameView.strokeWidth = width
   }
   
-  func freehandDidToggle(enabled: Bool) {
+  func freehandDidToggle(_ enabled: Bool) {
     currentFrameView.freehand = enabled
   }
   

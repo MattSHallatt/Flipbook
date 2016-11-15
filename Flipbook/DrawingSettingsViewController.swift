@@ -10,9 +10,9 @@ import UIKit
 
 protocol DrawingSettingsDelegate {
   
-  func colorDidChange(color: UIColor?)
-  func lineWidthDidChange(width: CGFloat)
-  func freehandDidToggle(enabled: Bool)
+  func colorDidChange(_ color: UIColor?)
+  func lineWidthDidChange(_ width: CGFloat)
+  func freehandDidToggle(_ enabled: Bool)
   
 }
 
@@ -30,10 +30,10 @@ class DrawingSettingsViewController: UIViewController {
     updateFreehand(true)
   }
   
-  func updateLineWidth(width: CGFloat) {
+  func updateLineWidth(_ width: CGFloat) {
     
     lineWidth = width
-    lineWidthLabel.text = String(lineWidth)
+    lineWidthLabel.text = String(describing: lineWidth)
     
     if let delegate = delegate {
       delegate.lineWidthDidChange(width)
@@ -41,11 +41,11 @@ class DrawingSettingsViewController: UIViewController {
     
   }
   
-  func updateFreehand(enabled: Bool) {
+  func updateFreehand(_ enabled: Bool) {
     
-    freehandButton.selected = enabled
+    freehandButton.isSelected = enabled
     
-    freehandButton.backgroundColor = enabled ? .greenColor() : .redColor()
+    freehandButton.backgroundColor = enabled ? .green : .red
     
     if let delegate = delegate {
       delegate.freehandDidToggle(enabled)
@@ -53,7 +53,7 @@ class DrawingSettingsViewController: UIViewController {
     
   }
   
-  @IBAction func colorButtonDidTouchUpInside(sender: UIButton) {
+  @IBAction func colorButtonDidTouchUpInside(_ sender: UIButton) {
     
     if let delegate = delegate {
       delegate.colorDidChange(sender.backgroundColor)
@@ -61,7 +61,7 @@ class DrawingSettingsViewController: UIViewController {
     
   }
   
-  @IBAction func lineWidthMinusButtonDidTouchUpInside(sender: UIButton) {
+  @IBAction func lineWidthMinusButtonDidTouchUpInside(_ sender: UIButton) {
     
     if lineWidth > 1 {
       updateLineWidth(lineWidth - 0.1)
@@ -69,15 +69,15 @@ class DrawingSettingsViewController: UIViewController {
     
   }
   
-  @IBAction func lineWidthPlusButtonDidTouchUpInside(sender: UIButton) {
+  @IBAction func lineWidthPlusButtonDidTouchUpInside(_ sender: UIButton) {
     
     updateLineWidth(lineWidth + 0.1)
     
   }
   
-  @IBAction func freehandButtonDidTouchUpInside(sender: UIButton) {
+  @IBAction func freehandButtonDidTouchUpInside(_ sender: UIButton) {
     
-    updateFreehand(!sender.selected)
+    updateFreehand(!sender.isSelected)
     
   }
   

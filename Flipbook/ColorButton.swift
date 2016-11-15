@@ -13,8 +13,8 @@ class ColorButton: UIButton {
   override func awakeFromNib() {
     super.awakeFromNib()
     
-    setTitle("", forState: .Normal)
-    layer.borderColor  = UIColor.darkGrayColor().CGColor
+    setTitle("", for: .normal)
+    layer.borderColor  = UIColor.darkGray.cgColor
     layer.borderWidth  = 1
     layer.cornerRadius = 3
   }
