@@ -8,6 +8,6 @@
 
 protocol Presentable {
   
-  var present: (Bool -> Void) { get set }
+  var present: ((Bool) -> Void) { get set }
   
 }

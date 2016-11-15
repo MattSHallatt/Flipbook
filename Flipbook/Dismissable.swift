@@ -8,6 +8,6 @@
 
 protocol Dismissable {
   
-  var dismiss: (Bool -> Void) { get set }
+  var dismiss: ((Bool) -> Void) { get set }
   
 }

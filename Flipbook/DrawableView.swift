@@ -19,26 +19,26 @@ struct Line {
 
 class DrawableView: UIView {
   
-  private var startingPoint: CGPoint?
-  private var endingPoint:   CGPoint?
-  private var strokeStartDate: NSDate?
+  fileprivate var startingPoint: CGPoint?
+  fileprivate var endingPoint:   CGPoint?
+  fileprivate var strokeStartDate: Date?
   
-  private var lines: [NSDate : [Line]] = Dictionary()
+  fileprivate var lines: [Date : [Line]] = Dictionary()
   
   var count: Int { return lines.count }
   
   var freehand: Bool = true
-  var strokeColor: UIColor! = .blackColor()
+  var strokeColor: UIColor! = .black
   var strokeWidth: CGFloat = 1
   
-  var lineDrawn: (Void -> Void)?
+  var lineDrawn: ((Void) -> Void)?
   
   func currentCanvas() -> UIImage {
     UIGraphicsBeginImageContext(frame.size)
-    drawViewHierarchyInRect(bounds, afterScreenUpdates: false)
+    drawHierarchy(in: bounds, afterScreenUpdates: false)
     let image = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
-    return image
+    return image!
   }
   
   func clearCanvas() {
@@ -47,31 +47,31 @@ class DrawableView: UIView {
   }
   
   func undoLastStroke() {
-    var latestDate: NSDate?
+    var latestDate: Date?
     for (date, _) in lines {
       if let tempLatestDate = latestDate {
-        if date.compare(tempLatestDate) == .OrderedDescending {
+        if date.compare(tempLatestDate) == .orderedDescending {
           latestDate = date
         }
       } else {
         latestDate = date
       }
     }
-    lines.removeValueForKey(latestDate!)
+    lines.removeValue(forKey: latestDate!)
     setNeedsDisplay()
   }
   
-  override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-    super.touchesBegan(touches, withEvent: event)
-    strokeStartDate = NSDate()
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesBegan(touches, with: event)
+    strokeStartDate = Date()
     lines[strokeStartDate!] = [ ]
-    startingPoint = touches.first?.locationInView(self)
+    startingPoint = touches.first?.location(in: self)
   }
   
-  override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-    super.touchesMoved(touches, withEvent: event)
+  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesMoved(touches, with: event)
     
-    endingPoint = touches.first?.locationInView(self)
+    endingPoint = touches.first?.location(in: self)
     
     if (freehand) {
       lines[strokeStartDate!]!.append(Line(startingPoint: startingPoint, endingPoint: endingPoint, color: strokeColor, width: strokeWidth))
@@ -81,11 +81,11 @@ class DrawableView: UIView {
     setNeedsDisplay()
   }
   
-  override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-    super.touchesEnded(touches, withEvent: event)
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesEnded(touches, with: event)
     
     if (!freehand) {
-      endingPoint = touches.first?.locationInView(self)
+      endingPoint = touches.first?.location(in: self)
       lines[strokeStartDate!]!.append(Line(startingPoint: startingPoint!, endingPoint: endingPoint!, color: strokeColor, width: strokeWidth))
     }
     
@@ -99,40 +99,40 @@ class DrawableView: UIView {
     setNeedsDisplay()
   }
   
-  override func drawRect(rect: CGRect) {
-    super.drawRect(rect)
+  override func draw(_ rect: CGRect) {
+    super.draw(rect)
     
     let ctx = UIGraphicsGetCurrentContext()
     
     if let startingPoint = startingPoint, let endingPoint = endingPoint {
       CGContextAddLine(ctx, Line(startingPoint: startingPoint, endingPoint: endingPoint, color: strokeColor, width: strokeWidth))
-      CGContextDrawPath(ctx, .Stroke)
+      ctx?.drawPath(using: .stroke)
     }
     
     for (_, line) in lines {
       
       for (lineSegment) in line {
         CGContextAddLine(ctx, lineSegment)
-        CGContextDrawPath(ctx, .Stroke)
+        ctx?.drawPath(using: .stroke)
       }
       
     }
     
   }
   
-  func CGContextAddLine(c: CGContext?, _ line: Line) {
-    CGContextSetStrokeColorWithColor(c, line.color.CGColor)
-    CGContextSetLineWidth(c, line.width)
+  func CGContextAddLine(_ c: CGContext?, _ line: Line) {
+    c?.setStrokeColor(line.color.cgColor)
+    c?.setLineWidth(line.width)
     CGContextMoveToCGPoint(c, line.startingPoint)
     CGContextAddLineToCGPoint(c, line.endingPoint)
   }
   
-  func CGContextMoveToCGPoint(c: CGContext?, _ point: CGPoint) {
-    CGContextMoveToPoint(c, point.x, point.y)
+  func CGContextMoveToCGPoint(_ c: CGContext?, _ point: CGPoint) {
+    c?.move(to: CGPoint(x: point.x, y: point.y))
   }
   
-  func CGContextAddLineToCGPoint(c: CGContext?, _ point: CGPoint) {
-    CGContextAddLineToPoint(c, point.x, point.y)
+  func CGContextAddLineToCGPoint(_ c: CGContext?, _ point: CGPoint) {
+    c?.addLine(to: CGPoint(x: point.x, y: point.y))
   }
   
 }

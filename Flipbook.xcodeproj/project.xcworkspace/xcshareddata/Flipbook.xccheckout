@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8066A6A1-74A5-4346-B2AE-D85AD36033B0</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Flipbook</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1926CC0F1462E13A9FCC4F2A1EDE13A09B5988BD</key>
+		<string>github.com:Matty180/Flipbook.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Flipbook.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1926CC0F1462E13A9FCC4F2A1EDE13A09B5988BD</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:Matty180/Flipbook.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1926CC0F1462E13A9FCC4F2A1EDE13A09B5988BD</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1926CC0F1462E13A9FCC4F2A1EDE13A09B5988BD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Flipbook</string>
+		</dict>
+	</array>
+</dict>
+</plist>
